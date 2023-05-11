@@ -1,4 +1,4 @@
-package com.poolleaf.composestudy.model
+package com.poolleaf.composestudy.hero.model
 
 import android.graphics.drawable.Drawable
 

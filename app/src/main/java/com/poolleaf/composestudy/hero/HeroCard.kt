@@ -27,7 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.poolleaf.composestudy.model.HeroData
+import com.poolleaf.composestudy.hero.model.HeroData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

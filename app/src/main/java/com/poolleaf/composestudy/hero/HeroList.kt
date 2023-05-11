@@ -5,7 +5,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.poolleaf.composestudy.model.HeroData
+import com.poolleaf.composestudy.hero.model.HeroData
 
 @Composable
 fun HeroList(

@@ -1,7 +1,7 @@
 package com.poolleaf.composestudy.hero.datasource
 
 import com.poolleaf.composestudy.R
-import com.poolleaf.composestudy.model.HeroData
+import com.poolleaf.composestudy.hero.model.HeroData
 
 object HeroDataSource {
     val heroList = listOf(
