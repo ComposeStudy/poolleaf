@@ -82,7 +82,7 @@ fun CreateSportsBox(
                     text = stringResource(item.subtitleResourceId),
                     style = MaterialTheme.typography.bodySmall
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.weight(1f))
                 Row(verticalAlignment = Alignment.Bottom) {
                     Text(
                         text = AnnotatedString(text = "${item.playerCount} players"),

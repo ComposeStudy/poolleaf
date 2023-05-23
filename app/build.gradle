@@ -56,6 +56,17 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation 'androidx.compose.material3:material3:1.0.0-alpha11'
     testImplementation 'junit:junit:4.13.2'
+
+    // Retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // 원하는 직렬화 형식에 따른 컨버터로 변경하세요 (예: Moshi, Kotlin Serialization)
+
+    // Coil
+    implementation 'io.coil-kt:coil:2.0.0'
+
+    // Kotlin Serialization
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
