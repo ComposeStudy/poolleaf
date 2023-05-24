@@ -1,43 +1,41 @@
 package com.poolleaf.composestudy
 
-import android.content.Context
 import android.os.Bundle
-import android.util.DisplayMetrics
-import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
-import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.poolleaf.composestudy.cupcake.ui.LunchTrayScreen
-import com.poolleaf.composestudy.sport.ui.SportsApp
-import com.poolleaf.composestudy.sport.utils.WindowStateUtils
+import com.poolleaf.composestudy.frog.domain.FrogListViewModel
+import com.poolleaf.composestudy.frog.ui.screens.FrogListScreen
 import com.poolleaf.composestudy.ui.theme.ComposeStudyTheme
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+    private val frogListViewModel: FrogListViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             ComposeStudyTheme {
-                val screenState = rememberSaveable { mutableStateOf(WindowStateUtils.ListOnly) }
-                val windowSize = calculateWindowSizeClass(this)
+                FrogListScreen(frogListViewModel.uiState.value)
+            }
+        }
+        collectFlow()
+    }
 
-                screenState.value = when (windowSize.widthSizeClass) {
-                    WindowWidthSizeClass.Compact,
-                    WindowWidthSizeClass.Medium -> WindowStateUtils.ListOnly
-                    WindowWidthSizeClass.Expanded -> WindowStateUtils.ListAndDetail
-                    else -> WindowStateUtils.ListOnly
-                }
-
-                SportsApp (windowState = screenState.value)
+    private fun collectFlow() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                frogListViewModel.getFrogList()
             }
         }
     }
