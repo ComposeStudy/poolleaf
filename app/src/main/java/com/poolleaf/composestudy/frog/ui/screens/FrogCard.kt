@@ -120,7 +120,7 @@ fun FrogListScreen(uiState: FrogUiState) {
             FrogTopAppBar()
         }
     ) { paddingValues ->
-        when(uiState) {
+        when (uiState) {
             is FrogUiState.Success -> {
                 FrogListScreen(
                     modifier = Modifier
@@ -132,6 +132,7 @@ fun FrogListScreen(uiState: FrogUiState) {
                     list = uiState.frogList
                 )
             }
+
             is FrogUiState.Fail -> {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -143,8 +144,17 @@ fun FrogListScreen(uiState: FrogUiState) {
                     )
                 }
             }
+
             is FrogUiState.Loading -> {
-                Image(painter = painterResource(id = R.drawable.ic_loading), contentDescription = null )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_loading),
+                        contentDescription = null
+                    )
+                }
             }
         }
     }
